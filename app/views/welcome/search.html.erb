@@ -1,0 +1,27 @@
+<br />
+  <% @hotels.each do |hotel| %>
+  
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <img class="img-fluid" src="/assets/<%= hotel.name %>.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4"><%= hotel.name %></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
+            <%= link_to "Check Our Rooms", search_rooms_path(:hotel_id => hotel.id) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<% end %>
+
+  
+
+  

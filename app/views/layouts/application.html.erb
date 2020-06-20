@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hotel Bookings</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="https://startbootstrap.github.io/startbootstrap-one-page-wonder/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://startbootstrap.github.io/startbootstrap-one-page-wonder/css/one-page-wonder.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://startbootstrap.github.io/startbootstrap-one-page-wonder/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- date picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js" integrity="sha256-Gn7MUQono8LUxTfRA0WZzJgTua52Udm1Ifrk5421zkA=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.45/js/bootstrap-datetimepicker.min.js" integrity="sha256-SS5UPPXAM4HWVoFCt0tsx90VWhRf7cStU5kabObE8cw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+    
+    <!-- header -->
+     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Hotel Bookings</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <% unless user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, :class => "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log in", new_user_session_path, :class => "nav-link" %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to "HI #{current_user.email}", "#", :class => "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => "nav-link" %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+    <!-- header -->  
+    <!-- devise alert messages -->
+    <% if notice && notice != nil %>
+    <p class="notice"><%= notice %></p>
+    <% end %>
+    
+    <% if alert && alert != nil %>
+    <p class="alert"><%= alert %></p>
+    <% end %>
+    <!-- devise alert messages -->
+    <%= yield %>
+    
+    <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Hotel Bookings 2020</p>
+    </div>
+  </footer>
+  <!-- Footer -->
+  
+  </body>
+</html>
