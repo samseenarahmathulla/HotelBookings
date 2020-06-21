@@ -32,7 +32,16 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  
+  # added to fix devise and warden issue
+  # Devise::MissingWarden:
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  
+  ##factory-bot
+  config.include FactoryGirl::Syntax::Methods
+  
+  config.include Capybara::DSL
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

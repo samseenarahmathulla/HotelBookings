@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">My Bookings:</h5>
+
+    <ul class="list-group">
+      <% @bookings.each do |booking| %>
+    <li class="list-group-item">Room :<%= booking.room.name %> in hotel: <%= booking.room.hotel.name %></li>
+  <% end %>
+    </ul>
+  </div>
+</div>
+

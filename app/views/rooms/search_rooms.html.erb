@@ -51,7 +51,11 @@
             <%= form_with model: @booking, :class => 'w-full max-w-sm' do |f| %>
               <%= f.hidden_field :checkin_date, :value => session[:checkin_date] %>
               <%= f.hidden_field :checkout_date, :value => session[:checkout_date] %>
-              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <% if current_user && current_user.id != "" %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+                <% else %>
+                <%= f.hidden_field :user_id, :value => "" %>
+              <% end %>
               <%= f.hidden_field :room_id, :value => room.id %>
               <%= f.hidden_field :amount, :value => room.price %>
               <%= f.submit 'Book Your Room', :class => "btn btn-primary mb-2" %>
