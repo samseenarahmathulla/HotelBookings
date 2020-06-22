@@ -5,7 +5,7 @@
     <%= form_tag("/search_rooms?hotel_id=6", :class=> "form-inline", :method => "POST") do %>
       <div class="form-group mb-2">
         <label for="checkin_date" class="">Checkin date</label>
-        <div class='input-group date' id='checkin_date'>
+        <div class='input-group date' id='checkin_datepicker'>
             <input type='text' class="form-control" id="get_in_date" name="get_in_date" <% if session[:checkin_date] && session[:checkin_date] != "" %> value=<%= session[:checkin_date] %> <% end %> placeholder="Check-in Date" />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
@@ -14,7 +14,7 @@
       </div>
       <div class="form-group mx-sm-3 mb-2">
         <label for="checkout_date" class="">Checkout date</label>
-        <div class='input-group date' id='checkout_date'>
+        <div class='input-group date' id='checkout_datepicker'>
             <input type='text' class="form-control" id="get_out_date" name="get_out_date" <% if session[:checkout_date] && session[:checkout_date] != "" %> value=<%= session[:checkout_date] %> <% end %> placeholder="Check-out Date"  />
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
@@ -48,7 +48,7 @@
             <h2 class="display-4"><%= room.name %></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
             <h3>RM <%= room.price %></h3>
-            <%= form_with model: @booking, :class => 'w-full max-w-sm' do |f| %>
+            <%= form_with model: @booking, :class => 'w-full max-w-sm', :local => 'false' do |f| %>
               <%= f.hidden_field :checkin_date, :value => session[:checkin_date] %>
               <%= f.hidden_field :checkout_date, :value => session[:checkout_date] %>
               <% if current_user && current_user.id != "" %>

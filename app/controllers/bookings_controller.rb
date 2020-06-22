@@ -15,8 +15,12 @@ class BookingsController < ApplicationController
       flash[:notice] = "Please sign up/log in to proceed."
       redirect_to new_user_registration_path
     else
+      #Checkin date can't be saved in first stage due to validation error - checkin date is getting blank - hence its updated later.
+      #TODO - fix it.
       @booking = Booking.new(params_booking)
-    if @booking.save
+      if @booking.save
+        @booking = Booking.where("user_id = ?", current_user.id).last
+        @booking.update_column(:checkin_date, @booking.checkout_date-3)
         flash[:notice] = "Your booking is successfull."
         redirect_to bookings_path 
     else
@@ -30,6 +34,6 @@ class BookingsController < ApplicationController
   
   private
   def params_booking
-    params.require(:booking).permit(:room_id, :user_id, :checkin_date, :checkout_date, :amount)
+    params.require(:booking).permit(:room_id, :checkin_date, :checkout_date, :user_id, :amount).merge(checkin_date: session[:checkin_date])
   end
 end

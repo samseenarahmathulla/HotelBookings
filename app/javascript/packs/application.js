@@ -21,6 +21,6 @@ require("channels")
 
 //datetimepicker - format: L - shows only date.
   $(document).on('turbolinks:load', function(){
-    $('#checkin_date').datetimepicker({format: 'L'});
-    $('#checkout_date').datetimepicker({format: 'L'});
+    $('#checkin_datepicker').datetimepicker({format: 'L'});
+    $('#checkout_datepicker').datetimepicker({format: 'L'});
 });
