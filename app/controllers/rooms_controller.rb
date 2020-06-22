@@ -1,5 +1,9 @@
 class RoomsController < ApplicationController
   
+  
+  # Search Rooms of the selected hotel and display them.
+  #TODO: Implement a detailed search - ie.only the rooms available within the checkin and checkout dates should be displayed.
+
   def search_rooms
     @hotel = Hotel.find(params[:hotel_id])
     @rooms = Room.where(:hotel_id => params[:hotel_id])

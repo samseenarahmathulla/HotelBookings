@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
     #before_action :authenticate_user!
+    
+  #Bookings method  - shows bookings/orders of the current user.
   def index
     unless user_signed_in?
       flash[:notice] = "Please sign up/log in to proceed."
@@ -10,13 +12,13 @@ class BookingsController < ApplicationController
   end
   
   
+  #Bookings - create method
   def create
     unless user_signed_in?
       flash[:notice] = "Please sign up/log in to proceed."
       redirect_to new_user_registration_path
     else
       #Checkin date can't be saved in first stage due to validation error - checkin date is getting blank - hence its updated later.
-      #TODO - fix it.
       @booking = Booking.new(params_booking)
       if @booking.save
         @booking = Booking.where("user_id = ?", current_user.id).last
