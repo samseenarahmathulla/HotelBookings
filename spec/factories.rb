@@ -7,8 +7,8 @@ FactoryGirl.define do
       end
       
       factory :booking do
-        checkin_date      "2020-03-06"
-        checkout_date     "2020-03-09"
+        room_in_date      "2020-03-06"
+        room_out_date     "2020-03-09"
         amount            "100"
       end
       

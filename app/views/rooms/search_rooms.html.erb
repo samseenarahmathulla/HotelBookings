@@ -49,8 +49,8 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
             <h3>RM <%= room.price %></h3>
             <%= form_with model: @booking, :class => 'w-full max-w-sm', :local => 'false' do |f| %>
-              <%= f.hidden_field :checkin_date, :value => session[:checkin_date] %>
-              <%= f.hidden_field :checkout_date, :value => session[:checkout_date] %>
+              <%= f.hidden_field :room_in_date, :value => session[:checkin_date] %>
+              <%= f.hidden_field :room_out_date, :value => session[:checkout_date] %>
               <% if current_user && current_user.id != "" %>
                 <%= f.hidden_field :user_id, :value => current_user.id %>
                 <% else %>

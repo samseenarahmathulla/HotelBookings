@@ -29,37 +29,33 @@ RSpec.describe BookingsController, :type => :controller do
   
   describe "POST #create" do
     it "is expected to return redirect status " do
-        post :create, params: { booking: {checkin_date: @booking.checkout_date-3, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        post :create, params: { booking: {room_in_date: @booking.room_in_date, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
         expect(response.status).to eq(302)
     end
     
-    #TODO: due to checkin date validation error - it redirects to "/" .Ideally it should redirect to bookings_path
     it "is expected to redirect to bookings_path " do
-        post :create, params: { booking: {checkin_date: @booking.checkout_date-3, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
-        #expect(response).to redirect_to bookings_path
-        expect(response).to redirect_to "/"
+        post :create, params: { booking: {room_in_date: @booking.room_in_date, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        expect(response).to redirect_to bookings_path
     end
     
-    #TODO: due to checkin date validation error - flash notice message should not be nil
     it "is expected to set flash notice message" do
-        post :create, params: { booking: {checkin_date: @booking.checkout_date-3, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
-        #expect(flash[:notice]).to eq('Your booking is successfull.')
-        expect(flash[:notice]).to eq(nil)
+        post :create, params: { booking: {room_in_date: @booking.room_in_date, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        expect(flash[:notice]).to eq('Your booking is successfull.')
       end
     
     it 'validation error - is expected to redirect to root' do
-        post :create, params: { booking: {checkin_date: nil, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        post :create, params: { booking: {room_in_date: nil, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
         is_expected.to redirect_to "/"
       end
     
     it "validation error - is expected to set flash alert message" do
-        post :create, params: { booking: {checkin_date: nil, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        post :create, params: { booking: {room_in_date: nil, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
         expect(flash[:alert]).to eq('Something went wrong. Please try again.')
       end
     
-    it "validation error - is expected to add errors to checkin_date attribute" do
-        post :create, params: { booking: {checkin_date: nil, checkout_date: @booking.checkout_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
-        expect(assigns[:booking].errors[:checkin_date]).to eq(['can\'t be blank'])
+    it "validation error - is expected to add errors to room_in_date attribute" do
+        post :create, params: { booking: {room_in_date: nil, room_out_date: @booking.room_out_date, amount: @booking.amount, user_id: @user.id, room_id: @room.id} }
+        expect(assigns[:booking].errors[:room_in_date]).to eq(['can\'t be blank'])
     end
   end
    
