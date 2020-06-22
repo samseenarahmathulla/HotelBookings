@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Things you may want to cover: Ruby On Rails is used to develop this web api.
 
 * Ruby version: ruby 2.7.1p83
 
@@ -55,9 +55,20 @@ Things you may want to cover:
   #TODO: wider use of devise by using default model methods and configuring more.Also mailers can be configured and send according to the use case.
   
 * Deployment instructions
-  Capistrano gem can be used for deployment.
-  #TODO: implement it.
-  Once done, run the following command in terminal:
+  Capistrano gems are used for deployment.
+  gem "capistrano", "~> 3.7"
+  gem "capistrano-rails", "~> 1.2"
+  gem "capistrano-passenger", "~> 0.2.0"
+  gem "capistrano-yarn"
+  #Add this if you"re using rbenv
+  gem "capistrano-rbenv", "~> 2.1"
+  
+  
+  To Install:
+  bundle install 
+  cap install STAGES=production
+  When deploying to server - Edit the 2 files and fill the server details in: config/deploy.rb and config/deploy/production.rb
+  Once done, Run the following command in terminal:
   cap production deploy
   
   This deploys all our code referenced from git to the server.
